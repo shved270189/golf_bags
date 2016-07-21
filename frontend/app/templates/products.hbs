@@ -1,0 +1,40 @@
+<h1>Products</h1>
+
+<table class="table">
+  <thead>
+    <th>#</th>
+    <th>Name</th>
+    <th>Type</th>
+    <th>Length</th>
+    <th>Width</th>
+    <th>Height</th>
+    <th>Weight</th>
+  </thead>
+  <tbody>
+    {{#each model as |product index|}}
+      <tr>
+        <td>
+          <strong>{{increment index}}</strong>
+        </td>
+        <td>
+          {{product.name}}
+        </td>
+        <td>
+          {{product.type}}
+        </td>
+        <td>
+          {{product.length}}
+        </td>
+        <td>
+          {{product.width}}
+        </td>
+        <td>
+          {{product.height}}
+        </td>
+        <td>
+          {{product.weight}}
+        </td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
