@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+ruby '2.3.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.0'
@@ -69,3 +70,4 @@ gem 'grape-swagger-rails', '0.2.0'
 gem 'hashie-forbidden_attributes'
 gem 'ember-cli-rails', github: 'thoughtbot/ember-cli-rails', branch: 'sd-rails-5'
 gem 'mongoid', github: 'mongodb/mongoid'
+gem 'rails_12factor', group: :production
