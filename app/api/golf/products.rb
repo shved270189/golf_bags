@@ -47,7 +47,7 @@ module Golf
                                 :width.gte => params[:width],
                                 :height.gte => params[:height],
                                 :weight.gte => params[:weight])
-                         .order(:volume.asc).first
+                         .order(:volume.asc, :weight.asc).first
         present({ product: product }, with: Golf::Entities::ProductResponse)
       end
 
