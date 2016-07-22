@@ -1,13 +1,7 @@
+<button type="button" class="btn btn-primary" {{action 'startCreateProduct'}}>
+  Create new product
+</button>
 <h1>Products</h1>
-{{!-- {{#em-form model=creatingProduct}}
-  {{em-input property='name' type='text' label='Name' placeholder='Name'}}
-  {{em-input property='type' type='text' label='Type' placeholder='Type'}}
-  {{em-input property='length' type='text' label='Length' placeholder='Length'}}
-  {{em-input property='width' type='text' label='Width' placeholder='Width'}}
-  {{em-input property='height' type='text' label='Height' placeholder='Height'}}
-  {{em-input property='weight' type='text' label='Weight' placeholder='Weight'}}
-{{/em-form}} --}}
-
 <table class="table">
   <thead>
     <th>#</th>
@@ -81,6 +75,41 @@
         </button>
         <button type="button" class="btn btn-primary" {{action 'saveUpdatingProduct'}} disabled={{not updatingProduct.isValid}}>
           Save
+        </button>
+      </div>
+    {{/bootstrap-modal}}
+  {{/with}}
+{{/if}}
+
+{{#if showCreateModal}}
+  {{#with (action 'cancelCreate') as |toggle|}}
+    {{#bootstrap-modal close=(action toggle) closeOnOverlayClick=true}}
+      <div class="modal-header">
+        <button type="button" class="close" aria-label="Close" {{action toggle}}>
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">Create product</h4>
+      </div>
+
+      <div class="modal-body">
+
+        {{#em-form model=creatingProduct submitButton=false}}
+          {{em-input property='name' type='text' label='Name' placeholder='Name'}}
+          {{em-input property='type' type='text' label='Type' placeholder='Type'}}
+          {{em-input property='length' type='text' label='Length' placeholder='Length'}}
+          {{em-input property='width' type='text' label='Width' placeholder='Width'}}
+          {{em-input property='height' type='text' label='Height' placeholder='Height'}}
+          {{em-input property='weight' type='text' label='Weight' placeholder='Weight'}}
+        {{/em-form}}
+
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" {{action toggle}}>
+          Cancel
+        </button>
+        <button type="button" class="btn btn-primary" {{action 'saveCreatingProduct'}} disabled={{not creatingProduct.isValid}}>
+          Create
         </button>
       </div>
     {{/bootstrap-modal}}

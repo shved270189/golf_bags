@@ -25,6 +25,21 @@ export default Ember.Controller.extend({
 
       this.get('updatingProduct').save();
       this.set('showUpdateModal', false);
+    },
+
+    startCreateProduct() {
+      this.set('creatingProduct', this.get('model.store').createRecord('product'));
+      this.set('showCreateModal', true);
+    },
+
+    cancelCreate() {
+      this.get('creatingProduct').deleteRecord();
+      this.set('showCreateModal', false);
+    },
+
+    saveCreatingProduct() {
+      this.get('creatingProduct').save();
+      this.set('showCreateModal', false);
     }
   }
 });
