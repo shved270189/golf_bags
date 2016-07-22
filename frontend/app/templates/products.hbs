@@ -15,33 +15,35 @@
   </thead>
   <tbody>
     {{#each model as |product index|}}
-      <tr>
-        <td>
-          <strong>{{increment index}}</strong>
-        </td>
-        <td>
-          {{product.name}}
-        </td>
-        <td>
-          {{product.type}}
-        </td>
-        <td>
-          {{product.length}}
-        </td>
-        <td>
-          {{product.width}}
-        </td>
-        <td>
-          {{product.height}}
-        </td>
-        <td>
-          {{product.weight}}
-        </td>
-        <td>
-          <button type="button" class="btn btn-default" {{action 'updatingProduct' product}}>Update</button>
-          <button type="button" class="btn btn-danger" {{action 'destroyProduct' product}}>Destroy</button>
-        </td>
-      </tr>
+      {{#if (not product.isNew)}}
+        <tr>
+          <td>
+            <strong>{{increment index}}</strong>
+          </td>
+          <td>
+            {{product.name}}
+          </td>
+          <td>
+            {{product.type}}
+          </td>
+          <td>
+            {{product.length}}
+          </td>
+          <td>
+            {{product.width}}
+          </td>
+          <td>
+            {{product.height}}
+          </td>
+          <td>
+            {{product.weight}}
+          </td>
+          <td>
+            <button type="button" class="btn btn-default" {{action 'updatingProduct' product}}>Update</button>
+            <button type="button" class="btn btn-danger" {{action 'destroyProduct' product}}>Destroy</button>
+          </td>
+        </tr>
+      {{/if}}
     {{/each}}
   </tbody>
 </table>
