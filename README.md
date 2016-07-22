@@ -13,7 +13,7 @@ rake db:seed
 ```
 
 ## App running
-See requirements before if you have troubles.
+See requirements below if you have troubles.
 ```bash
 rake db:create # create database
 rake db:seed # add seed data to database
