@@ -1,4 +1,12 @@
 <h1>Products</h1>
+{{!-- {{#em-form model=creatingProduct}}
+  {{em-input property='name' type='text' label='Name' placeholder='Name'}}
+  {{em-input property='type' type='text' label='Type' placeholder='Type'}}
+  {{em-input property='length' type='text' label='Length' placeholder='Length'}}
+  {{em-input property='width' type='text' label='Width' placeholder='Width'}}
+  {{em-input property='height' type='text' label='Height' placeholder='Height'}}
+  {{em-input property='weight' type='text' label='Weight' placeholder='Weight'}}
+{{/em-form}} --}}
 
 <table class="table">
   <thead>
@@ -9,6 +17,7 @@
     <th>Width</th>
     <th>Height</th>
     <th>Weight</th>
+    <th></th>
   </thead>
   <tbody>
     {{#each model as |product index|}}
@@ -34,7 +43,46 @@
         <td>
           {{product.weight}}
         </td>
+        <td>
+          <button type="button" class="btn btn-default" {{action 'updatingProduct' product}}>Update</button>
+          <button type="button" class="btn btn-danger" {{action 'destroyProduct' product}}>Destroy</button>
+        </td>
       </tr>
     {{/each}}
   </tbody>
 </table>
+
+{{#if showUpdateModal}}
+  {{#with (action 'cancelUpdate') as |toggle|}}
+    {{#bootstrap-modal close=(action toggle) closeOnOverlayClick=true}}
+      <div class="modal-header">
+        <button type="button" class="close" aria-label="Close" {{action toggle}}>
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">Update product</h4>
+      </div>
+
+      <div class="modal-body">
+
+        {{#em-form model=updatingProduct submitButton=false}}
+          {{em-input property='name' type='text' label='Name' placeholder='Name'}}
+          {{em-input property='type' type='text' label='Type' placeholder='Type'}}
+          {{em-input property='length' type='text' label='Length' placeholder='Length'}}
+          {{em-input property='width' type='text' label='Width' placeholder='Width'}}
+          {{em-input property='height' type='text' label='Height' placeholder='Height'}}
+          {{em-input property='weight' type='text' label='Weight' placeholder='Weight'}}
+        {{/em-form}}
+
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" {{action toggle}}>
+          Cancel
+        </button>
+        <button type="button" class="btn btn-primary" {{action 'saveUpdatingProduct'}} disabled={{not updatingProduct.isValid}}>
+          Save
+        </button>
+      </div>
+    {{/bootstrap-modal}}
+  {{/with}}
+{{/if}}
